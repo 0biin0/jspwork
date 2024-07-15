@@ -1,10 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="java.util.* , java.io.*"
-		 session="true"
-		 buffer="16kb"
-		 autoFlush="true"
-		  %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,9 +8,10 @@
 </head>
 <body>
 	<%
-	   Date date = new Date();
+		String id = request.getParameter("id");
+		String pw = request.getParameter("pw");
 	%>
-	<p>현재 날짜와 시간은?</p>
-	<%=date.toLocaleString() %>
+	당신의 아이디는 <%=id %>이고,<p/>
+	 당신의 비밀번호는 <%=pw %>입니다
 </body>
 </html>
