@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="java.sql.*" %>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,25 +16,28 @@
 		Class.forName("oracle.jdbc.OracleDriver");
 		con =  DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","tjoeun", "1234");
 		st = con.createStatement();
-		rs = st.executeQuery("select * from department");
+		rs = st.executeQuery("select * from tb_product");
 %>
 	<table border="1">
 		<tr>
-			<th>ID</th>
-			<th>TITLE</th>
-			<th>LOCATION</th>
+			<th>PCODE</th>
+			<th>PNAME</th>
+			<th>BRAND</th>
+			<th>STOCK_QUANT</th>
 		</tr>
 	
 <%
 	while(rs.next()){
-		String id = rs.getString(1);
-		String title = rs.getString(2);
-		String location = rs.getString(3);
+		String pcode = rs.getString(1);
+		String pname = rs.getString(2);
+		String brand = rs.getString(3);
+		String quant = rs.getString(4);
 %>
 	<tr>
-		<td><%=id %></td>
-		<td><%=title %></td>
-		<td><%=location %></td>
+		<td><%=pcode %></td>
+		<td><%=pname %></td>
+		<td><%=brand %></td>
+		<td><%=quant %></td>
 	</tr>
 <% 
 	}
