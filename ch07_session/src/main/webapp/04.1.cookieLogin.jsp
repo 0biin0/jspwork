@@ -8,11 +8,29 @@
 </head>
 <body>
 	<h1>Cookie 로그인</h1>
-	<form action="" method="post">
+	<%
+ 	String id = "";
+ 	Cookie[] cookies = request.getCookies();
+ for(int i = 0; i<cookies.length; i++) {
+	 if(cookies[i].getName().equals("idKey")){
+		 id = cookies[i].getValue();
+	 }
+ }
+ if(id.equals("")){
+	 
+ %>
+	<form action="04.2.cookieLoginProc.jsp" method="post">
 		ID : <input name="id"><p/>
 		PW : <input type="password" name="pwd"><p/>
 		<input type="submit" value="Login">
 		<input type="reset">
 	</form>
+<%  }else{ %>
+<script>
+location.href="04.3.cookieLoginOK.jsp";
+</script>
+<%
+}
+%>
 </body>
 </html>

@@ -25,8 +25,10 @@ public class RegisterMgr {
 			pstmt.setString(1, id);
 			pstmt.setString(2, pwd);
 			
+			rs = pstmt.executeQuery();
 			
-			
+			if(rs.next() && rs.getInt(1) == 1)
+				logincon = true;
 			
 		} catch (Exception e) {
 			
