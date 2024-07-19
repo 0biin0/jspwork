@@ -98,7 +98,7 @@ public class Member {
 	}
 
 	public String getDetail_address() {
-		return detail_address;
+		return detail_address;  
 	}
 
 	public void setDetail_address(String detail_address) {
