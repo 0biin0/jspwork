@@ -140,6 +140,92 @@ public class VoteDao {
 		}
 		return alist;
 	}
+	
+	// 투표시 count증가
+	public boolean updateCount(int num, String[] itemnum) {
+		boolean flag = false;
+		
+		try {
+			con = pool.getConnection();
+			sql = "update voteitem set count = count+1 where listnum=? and itemnum=?";
+			pstmt = con.prepareStatement(sql);
+			if(num == 0)
+				num = getMaxNum();
+			
+			for(int i=0; i<itemnum.length; i++) {
+				if(itemnum[i] == null || itemnum[i].equals(""))
+					break;
+				
+				pstmt.setInt(1, num);
+				pstmt.setInt(2, Integer.parseInt(itemnum[i]));
+				// int result = pstmt.executeUpdate();
+				if(pstmt.executeUpdate() == 1)
+					flag = true;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			pool.freeConnection(con);
+		}
+		return flag;
+	}
+	
+	// listnum에 해당하는 전체 count가져오기
+	public int sumCount(int num) {
+		int count = 0;
+		
+		try {
+			con = pool.getConnection();
+			sql = "select sum(count) from voteitem where listnum=?";
+			pstmt = con.prepareStatement(sql);
+			if(num == 0)
+				pstmt.setInt(1, getMaxNum());
+			else
+				pstmt.setInt(1, num);
+			
+			rs = pstmt.executeQuery();
+			if(rs.next())
+				count = rs.getInt(1);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			pool.freeConnection(con);
+		}
+		return count;
+	}
+	
+	// listnum에 해당하는 각 item의 count 얻어오기
+	public ArrayList<VoteItem> getView(int num) {
+		ArrayList<VoteItem> alist = new ArrayList<VoteItem>();
+		
+		try {
+			con = pool.getConnection();
+			sql = "select item, count from voteitem where listnum=?";
+			pstmt = con.prepareStatement(sql);
+			
+			if(num == 0)
+				pstmt.setInt(1, getMaxNum());
+			else
+				pstmt.setInt(1, num);
+			
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				VoteItem vitem = new VoteItem();
+				String item[] = new String[1];
+				item[0] = rs.getString(1);
+				
+				vitem.setItem(item);
+				vitem.setCount(rs.getInt(2));
+				alist.add(vitem);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			pool.freeConnection(con);
+		}
+		return alist;
+	}
 }
 
 
