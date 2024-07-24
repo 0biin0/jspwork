@@ -1,5 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="board.*"%>
+    
+    <%
+	int num = Integer.parseInt(request.getParameter("num"));
+    String nowPage = request.getParameter("nowPage");
+	Board board = (Board)session.getAttribute("bean");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,13 +21,13 @@ table th{
 }
 </style>
 <body>
-<form action="boardDelete" method="delete">
+<form action="boardDelete" method="post">
 		<table align="center">
 			<tr>
 				<th colspan="2"  >사용자의 비밀번호를 입력해주세요</th>
 			</tr>
 			<tr>
-			<td align="center"><input type="password"></td>
+			<td align="center"><input type="password" name="pass"></td>
 			</tr>
 			<tr>
 				<td colspan="2" align="center">
@@ -32,7 +38,8 @@ table th{
 			</tr>
 			
 		</table>
-	\
+	<input type="hidden" name="num" value="<%=num %>">
+	<input type="hidden" name="nowPage" value="<%=nowPage %>">
 	</form>
 </body>
 </html>

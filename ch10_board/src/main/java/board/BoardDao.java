@@ -134,7 +134,8 @@ public class BoardDao {
 		}
 		return board;
 	}
-	//게시물 등록하기
+	
+	// 게시물 등록하기
 	public boolean insertBoard(Board board) {
 		boolean flag = false;
 		
@@ -150,6 +151,7 @@ public class BoardDao {
 			
 			if(pstmt.executeUpdate() == 1)
 				flag = true;
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -157,70 +159,70 @@ public class BoardDao {
 		}
 		return flag;
 	}
+	
 	// 게시물 수정
-		public void updateBoard(Board board) {
+	public void updateBoard(Board board) {
+		
+		try {
+			con = pool.getConnection();
+			sql = "update board set name=?, subject=?, content=? where num=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, board.getName());
+			pstmt.setString(2, board.getSubject());
+			pstmt.setString(3, board.getContent());
+			pstmt.setInt(4, board.getNum());
+			pstmt.executeQuery();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			pool.freeConnection(con);
+		}
+	}
+	
+	// 답변의 위치값을 증가
+	public void replyPosUpdate(int ref, int pos) {
+		
+		try {
+			con = pool.getConnection();
+			sql = "update board set pos = pos+1 where ref = ? and pos > ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, ref);
+			pstmt.setInt(2, pos);
+			pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			pool.freeConnection(con);
+		}
+	}
+	
+	// 게시물 댓글
+	public void replyBoard(Board board) {
+		
+		try {
+			con = pool.getConnection();
+			sql = "insert into board values(seq_board.nextval,?,?,?,?,?,?,sysdate,?,?,default)";
 			
-			try {
-				con = pool.getConnection();
-				sql = "update board set name=?, subject=?, content=? where num=?";
-				pstmt = con.prepareStatement(sql);
-				pstmt.setString(1, board.getName());
-				pstmt.setString(2, board.getSubject());
-				pstmt.setString(3,  board.getContent());
-				pstmt.setInt(4,  board.getNum());
-				pstmt.executeQuery();
-				
-			} catch (Exception e) {
-				e.printStackTrace();
-			} finally {
-				pool.freeConnection(con);
-			}
-		
-		}
-		//답변의 위치값을 증가
-		public void replyPosUpdate(int ref, int pos) {
-		
-			try {
-				con = pool.getConnection();
-				sql = "update board set pos = pos+1 where ref = ? and pos > ?";
-				pstmt = con.prepareStatement(sql);
-				pstmt.setInt(1, ref);
-				pstmt.setInt(2, pos);
-				pstmt.executeUpdate();
-				
-			} catch (Exception e) {
-				e.printStackTrace();
-			} finally {
-				pool.freeConnection(con);
-			}
-		}
-		// 게시물 댓글 달기
-		public void replyBoard(Board board) {
+			int depth = board.getDepth() + 1;	
+			int pos = board.getPos() + 1;
 			
-			try {
-				con = pool.getConnection();
-				sql = "insert into board values(seq_board.nextval,?,?,?,?,?,?,sysdate,?,?,default);";
-				int depth = board.getDepth() + 1;
-				int pos = board.getPos() + 1;
-				
-				pstmt = con.prepareStatement(sql);
-				pstmt.setString(1,board.getName());
-				pstmt.setString(2,board.getSubject());
-				pstmt.setString(3,board.getContent());
-				pstmt.setInt(4,pos);
-				pstmt.setInt(6, board.getRef());
-				pstmt.setInt(7, depth);
-				pstmt.setString(8, board.getPass());
-				pstmt.setString(9, board.getIp());
-				pstmt.executeUpdate();
-				
-			} catch (Exception e) {
-				e.printStackTrace();
-			} finally {
-				pool.freeConnection(con);
-			}
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, board.getName());
+			pstmt.setString(2, board.getSubject());
+			pstmt.setString(3, board.getContent());
+			pstmt.setInt(4, pos);
+			pstmt.setInt(5, board.getRef());
+			pstmt.setInt(6, depth);
+			pstmt.setString(7, board.getPass());
+			pstmt.setString(8, board.getIp());
+			pstmt.executeUpdate();		
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			pool.freeConnection(con);
 		}
-		
+	}
+	
 	// 게시물 총 레코드수
 	public int getTotalCount2() {
 		int totalCount = 0;
@@ -233,6 +235,22 @@ public class BoardDao {
 			pool.freeConnection(con);
 		}
 		return totalCount;
+	}
+	
+	// 게시물 삭제
+	public void deleteBoard(Board board) {
+		
+		try {
+			con = pool.getConnection();
+			sql = "delete from board where num=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, board.getNum());
+			pstmt.executeUpdate();	
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			pool.freeConnection(con);
+		}
 	}
 }
 
