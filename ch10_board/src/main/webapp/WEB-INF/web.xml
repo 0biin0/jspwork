@@ -29,4 +29,14 @@
     <servlet-name>BoardpostServlet</servlet-name>
     <url-pattern>/boardPost</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>BoardUpdateServlet</display-name>
+    <servlet-name>BoardUpdateServlet</servlet-name>
+    <servlet-class>board.BoardUpdateServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>BoardUpdateServlet</servlet-name>
+    <url-pattern>/boardUpdate</url-pattern>
+  </servlet-mapping>
 </web-app>
