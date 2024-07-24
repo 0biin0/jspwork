@@ -65,14 +65,16 @@
 <script>
 	function block(value) {
 		document.readFrm.nowPage.value=<%=pagePerBlock%>*(value-1)+1;
+		document.readFrm.action="list.jsp";
 		document.readFrm.submit();
 	}
 	function pageing(page) {
 		document.readFrm.nowPage.value=page;
+		document.readFrm.action="list.jsp";
 		document.readFrm.submit();
 	}
 	function list() {
-		/*  document.listFrm.action = "list.jsp"; */
+		/* document.listFrm.action = "list.jsp"; */
 		document.listFrm.submit();
 	}
 	function read(num) {
@@ -160,7 +162,7 @@
 			%>
 				</td>
 				<td colspan="2" style="text-align:right;">
-					<a href="" class="a">[글쓰기]</a>&emsp;
+					<a href="post.jsp" class="a">[글쓰기]</a>&emsp;
 					<a href="javascript:list();" class="a">[처음으로]</a>
 				</td>
 			</tr>
@@ -187,7 +189,7 @@
 			<input type="hidden" name="nowPage" value="1">
 		</form>
 		
-		<!-- 사용자가 만약 [2]를 누르면 2번째 페이지 보여주기 -->
+		<!-- 사용자가 만약 [2]를 누르면 2번째 페이지 보여주기와 상세보기 -->
 		<form name="readFrm">
 			<input type="hidden" name="num">
 			<input type="hidden" name="nowPage" value="<%=nowPage %>">
