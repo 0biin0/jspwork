@@ -8,11 +8,15 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 public class BoardUpdateServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		response.setContentType("text/html; charset=utf-8");
+		PrintWriter out = response.getWriter();
+		
 		String nowPage = request.getParameter("nowPage");
 		
 		Board upBean = new Board();
@@ -24,6 +28,17 @@ public class BoardUpdateServlet extends HttpServlet {
 		
 		HttpSession session = request.getSession();
 		Board inBean= (Board)session.getAttribute("bean"); //DB에서 저장되어있는 pass
+		
+		if(inBean.getPass().equals(upBean.getPass())) {
+			new BoardDao().updateBoard(upBean);
+			String url = "read.jsp?nowPage=" + nowPage + "&num=" + upBean.getNum(); //=에 공백 들어가면 안돼용 "&num= " <- 오류
+			response.sendRedirect(url);
+		}else {
+			out.print("<script>");
+			out.print("   alert('비밀번호가 맞지않습니다.')");
+			out.print("   history.back();");
+			out.print("</script>");
+		}
 	}
 
 }
