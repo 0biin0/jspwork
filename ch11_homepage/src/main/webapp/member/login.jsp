@@ -1,8 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%
-	String id = (String)session.getAttribute("idKey");
-%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,15 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-<%
-	if(id != null) {
-%>
-		<b><%=id %></b>님 환영합니다.<p/>
-		즐거운 쇼핑 되세요<p/>
-		<a href="logout.jsp">로그아웃</a>
-<%		
-	} else {
-%>
 	<form method="post" action="loginProc.jsp">
 		<table align="center">
 			<tr>
@@ -35,12 +23,11 @@
 			<tr>
 				<td colspan="2" align="center">
 					<input type="submit" value="로그인">&ensp;
-					<input type="button" value="회원가입" onclick="location.href='member.jsp'"> 
-					<input type="button" value="홈으로" onclick="location.href='../index.jsp'">
+					<input type="button" value="회원가입" onclick="location.href='member.jsp'">&ensp;
+					<input type="button" value="홈으로" onclick="location.href='../index.jsp'"> 
 				</td>
 			</tr>
 		</table>
 	</form>
-<%	}	%>
 </body>
 </html>

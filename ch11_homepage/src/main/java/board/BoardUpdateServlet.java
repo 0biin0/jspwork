@@ -24,21 +24,20 @@ public class BoardUpdateServlet extends HttpServlet {
 		upBean.setName(request.getParameter("name"));
 		upBean.setSubject(request.getParameter("subject"));
 		upBean.setContent(request.getParameter("content"));
-		upBean.setPass(request.getParameter("pass"));  //read.jsp에서 사용자가 넣은 pass
+		upBean.setPass(request.getParameter("pass"));  // read.jsp에서 사용자가 넣은 pass
 		
 		HttpSession session = request.getSession();
-		Board inBean= (Board)session.getAttribute("bean"); //DB에서 저장되어있는 pass
+		Board inBean = (Board)session.getAttribute("bean");  // DB에 저장되어있는 pass
 		
 		if(inBean.getPass().equals(upBean.getPass())) {
 			new BoardDao().updateBoard(upBean);
-			String url = "read.jsp?nowPage=" + nowPage + "&num=" + upBean.getNum(); //=에 공백 들어가면 안돼용 "&num= " <- 오류
+			String url = "read.jsp?nowPage=" + nowPage + "&num=" + upBean.getNum();
 			response.sendRedirect(url);
-		}else {
-			out.print("<script>");
-			out.print("   alert('비밀번호가 맞지않습니다.')");
-			out.print("   history.back();");
-			out.print("</script>");
+		} else {
+			out.println("<script>");
+			out.println("		alert('비밀번호가 맞지 않습니다.')");
+			out.println("		history.back()");
+			out.println("</script>");
 		}
 	}
-
 }

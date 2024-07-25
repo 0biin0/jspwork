@@ -1,7 +1,7 @@
 /*  전체 */
 * {margin: 0 auto; list-style: none; text-decoration: none; color: black;}
-a {color: cornflowerblue;}
-a:hover {color: blue;}
+a {color: inherit;}
+a:hover {color: inherit}
 body {width:1000px;}
 
 /*  헤더 */
@@ -12,12 +12,12 @@ header {height: 120px;}
     float: left;
     text-align: center;
     width: 200px;
-    background-color:lavender;
+    background-color:rgb(245, 245, 234);
     padding: 10px 0;
 }
 .nav>li:hover {
-    background-color:lightgrey;
-    color: aliceblue;
+    background-color:rgb(1, 1, 108);
+    color: white;
 }
 #login {
     clear: both;
@@ -25,3 +25,7 @@ header {height: 120px;}
     margin-top: 20px;
     padding-right: 20px;
 }
+
+/* 본문 이미지 */
+#imgslide {clear: both; width:1000px; height: 362px; margin: 10px 0; overflow: hidden;}
+#imgslide>img {position: absolute; }

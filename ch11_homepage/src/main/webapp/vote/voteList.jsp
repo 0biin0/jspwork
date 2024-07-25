@@ -12,7 +12,7 @@
 <style>
 	* {margin: 0 auto;}
 	div {width:800px;}
-	h2, h5{text-align:center; }
+	h2, h5, .cen {text-align:center; }
 	.m50 {margin-top:50px;}
 	.m30 {margin-top:30px;}
 	table {margin-top: 30px; width:800px;}
@@ -23,7 +23,7 @@
 <body>
 	<div>
 		<h2 class="m50">투표 프로그램</h2>
-		<input type="button" value="홈으로" onclick="location.href='../index.jsp'" style="margin-left:720px;">
+		<input type="button" value="홈으로" onclick="location.href='../index.jsp'" style="margin-left:720px;"> 
 		<hr>
 			
 		<jsp:include page="voteForm.jsp" />
@@ -41,11 +41,13 @@
 			
 			for(int i=0; i<alist.size(); i++) {
 				VoteList vlist = alist.get(i);
+				String sdate = vlist.getSdate().substring(0,10);
+				String edate = vlist.getEdate().substring(0,10);
 		%>
 			<tr>
-				<td><%=vlist.getNum() %></td>
+				<td class="cen"><%=vlist.getNum() %></td>
 				<td><a href="voteList.jsp?num=<%=vlist.getNum() %>" class="a"><%=vlist.getQuestion() %></a>
-				<td><%=vlist.getSdate() %> ~ <%=vlist.getEdate() %><td>
+				<td class="cen"><%=sdate %> ~ <%=edate %><td>
 			</tr>
 		<%
 			}
@@ -57,5 +59,6 @@
 	</div>
 </body>
 </html>
+
 
 

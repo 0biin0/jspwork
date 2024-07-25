@@ -4,7 +4,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>AJAX</title>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 </head>
 <body>
 	<h1>AJAX개요</h1>
@@ -90,5 +91,150 @@
 	- processData : 서버로 보내는 값에 대한 형태 설정 여부(기본 데이터를 원하는 경우 false설정)
 	- timeout : 서버 요청 시 응답 대기 시간(milisecond)
 	</pre>
+	
+	<h1>jQuery 방식을 이용한 AJAX 테스트</h1>
+	
+	<h3>1. 버튼 클릭시 get방식으로 서버에 요청 및 응답</h3>
+	
+	입력 : <input id="input1">&emsp; <button id="btn1">전송</button>
+	<br>
+	
+	응답 : <span id="output1">응답없음</span>
+	
+	<script>
+		$(() => {
+			$("#btn1").click(function() {
+				$.ajax({
+					url : "ajax1.do",
+					data : {input : $("#input1").val()},
+					type : "get",
+					success : function(data) {
+						console.log("ajax통신 성공");
+						console.log(data);
+						$("#output1").text(data);
+					},
+					error : function() {
+						console.log("ajax통신 실패");
+					}
+				})
+			})
+		})
+	</script>
+	
+	<form name="idCheck" action="idCheck.me">
+		<p>
+		아이디 : <input name="id" required>&emsp;
+			    <input type="button" value="ID중복확인" id="btn2">
+		</p>
+		<input type="submit" value="회원가입" disabled>
+	</form>
+<!-- 	
+	<script type="text/javascript">
+		$(() => {
+			$("#btn2").click(function() {
+				const $idInput = $("form input[name=id]");
+				$.ajax({
+					url : "idCheck.me",
+					data : {id : $idInput.val()},
+					success : function(result) {
+						console.log(result);
+						if(result == 'idN') {
+							alert('이미 사용중이거나 탈퇴한 아이디 입니다.');
+							$idInput.val('');
+							$idInput.focus();
+						} else {
+							if(confirm("사용가능한 아이디 입니다. 사용하시겠습니까?")) {
+								$("form :submit").removeAttr("disabled");
+								$idInput.attr("readonly", true);
+							} else {
+								$idInput.focus();
+							}
+						}
+					},
+					error : function() {
+						console.log("아이디 중복체크 ajax통신 실패");
+					}
+				})
+			})
+		})
+	</script> 
+-->
+	
+	<form name="regFrm" action="idCheck.me" id="enrollForm">
+		<p>아이디 : <input name="id" id="id" required></p>
+		<div id="checkResult" style="font-size:0.8em; display:none"></div>
+		<button type="submit" disabled>회원가입</button>&emsp;
+		<button type="reset">초기화</button>
+	</form>
+	
+	<script>
+		$(() => {
+			const $idInput = $("#id");
+			$idInput.keyup(function() {
+				if($idInput.val().length >= 3) {
+					$.ajax({
+						url: "idCheck.me",
+						data : {id : $idInput.val()},
+						success : function(result) {
+							console.log(result);
+							if(result == 'idN') {
+								$("#checkResult").show();
+								$("#checkResult").css("color","red").text("중복된 아이디가 존재합니다. 다시 입력하세요");
+								$("#enrollForm :submit").attr("disabled", true);
+							} else {
+								$("#checkResult").show();
+								$("#checkResult").css("color","green").text("멋진 아이디 입니다.");
+								$("#enrollForm :submit").attr("disabled", false);
+							}
+						},
+						error : function() {
+							console.log("아이디 중복체크 ajax 통신 실패");
+						}
+					})
+				} else {
+					$("#checkResult").hide();
+					$("#enrollForm :submit").attr("disabled", true);
+				}
+			})
+		})
+	</script>
+	<hr>
+	
+	<h3>2. 버튼 클릭시 post방식으로 서버에 여러개의 데이터 전송 및 응답</h3>
+   
+   이름 : <input type="text" id="name"> <br>
+   나이 : <input type="number" id="age"> <br>
+   <button id="btn3">전송</button>			
+	
+	응답 : <label id="output3"></label>
+
+	<script>
+		$(() => {
+			$("#btn3").click(function(){
+				$.ajax({
+					url : 'ajax2.do',
+					data : {
+						name : $("#name").val(),
+						age : $("#age").val()
+					},
+					type : post,
+					success : function(result) {
+						console.log(result);
+					},
+					error : function() {
+						console.log("ajax 통신 실패");
+					}
+				})
+			})
+		})
+	</script>	
+	
+	<br><br><br><br><br><br><br><br><br>
 </body>
 </html>
+
+
+
+
+
+

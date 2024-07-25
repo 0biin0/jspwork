@@ -1,4 +1,4 @@
-package member;
+package ajax01;
 
 import java.util.Arrays;
 
