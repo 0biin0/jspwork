@@ -1,0 +1,27 @@
+/*  전체 */
+* {margin: 0 auto; list-style: none; text-decoration: none; color: black;}
+a {color: cornflowerblue;}
+a:hover {color: blue;}
+body {width:1000px;}
+
+/*  헤더 */
+header {height: 120px;}
+.logo {float: left; width: 80px; margin-top: 20px;}
+.nav {float: right; margin-top: 20px; width: 600px; height: 20px;}
+.nav>li {
+    float: left;
+    text-align: center;
+    width: 200px;
+    background-color:lavender;
+    padding: 10px 0;
+}
+.nav>li:hover {
+    background-color:lightgrey;
+    color: aliceblue;
+}
+#login {
+    clear: both;
+    text-align: right;
+    margin-top: 20px;
+    padding-right: 20px;
+}

@@ -3,6 +3,8 @@ package board;
 import java.sql.*;
 import java.util.ArrayList;
 
+import db.DBConnectionMgr;
+
 public class BoardDao {
 	private DBConnectionMgr pool;
 	Connection con = null;

@@ -111,6 +111,7 @@ public class Member {
 
 	public void setHobby(String[] hobby) {
 		this.hobby = hobby;
+		 
 	}
 
 	public String getJob() {

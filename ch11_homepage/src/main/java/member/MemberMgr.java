@@ -2,6 +2,8 @@ package member;
 
 import java.sql.*;
 
+import db.DBConnectionMgr;
+
 public class MemberMgr {
 	private DBConnectionMgr pool;
 	Connection con = null;

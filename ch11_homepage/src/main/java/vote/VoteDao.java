@@ -5,6 +5,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
+import db.DBConnectionMgr;
+
 public class VoteDao {
 	private DBConnectionMgr pool;
 	Connection con = null;
