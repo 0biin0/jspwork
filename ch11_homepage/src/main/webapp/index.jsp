@@ -6,6 +6,9 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link href="resources/css/index.css" rel="stylesheet">
+<%
+	String id = (String)session.getAttribute("idKey");
+%>
 </head>
 <body>
 	<header>
@@ -16,11 +19,17 @@
 			<ul class="nav">
 				<li><a href="vote/voteList.jsp">투표프로그램</a></li>
 				<li><a href="board/list.jsp">게시판</a></li>
+				<%if(id == null) {%>
 				<li><a href="member/login.jsp">로그인</a></li>
+				<%}else{%>
+				<li><a href="member/logout.jsp">로그인</a></li>
+				<%}%>
 			</ul>
 		</nav>
 		<div id="login">
-			<p>[???님 로그인 상태]</p>
+		<%if(id == null) {%>
+			<p>[<%=id %>님 로그인 상태]</p>
+		<%} %>
 		</div>
 	</header>
 	<article>

@@ -36,6 +36,7 @@
 				<td colspan="2" align="center">
 					<input type="submit" value="로그인">&ensp;
 					<input type="button" value="회원가입" onclick="location.href='member.jsp'"> 
+					<input type="button" value="홈으로" onclick="location.href='../index.jsp'">
 				</td>
 			</tr>
 		</table>

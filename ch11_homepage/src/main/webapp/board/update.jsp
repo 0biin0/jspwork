@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="board.*"%>
+    pageEncoding="UTF-8"%>
+<%@ page import="board.*" %>
 <%
 	int num = Integer.parseInt(request.getParameter("num"));
 	String nowPage = request.getParameter("nowPage");
@@ -12,7 +13,7 @@
 <title>Insert title here</title>
 <style>
 	table{width:600px; margin-top: 50px;}
-	table th{background-color:#D0A9F5; height:40px; color:white;}
+	table th{background-color:#813477; height:40px; color:white;}
 	table td {height:30px;}
 	textarea {resize: none;}
 </style>
@@ -40,7 +41,7 @@
 			</tr>
 			<tr>
 				<td>비밀번호</td>
-				<td><input type="password" name="pass" required>수정 시에는 비밀번호가 필요합니다</td>
+				<td><input type="password" name="pass" required> 수정시에는 비밀번호가 필요합니다.</td>
 			</tr>
 			<tr>
 				<td colspan="2"><br><br><hr></td>
@@ -55,6 +56,6 @@
 		</table>
 		<input type="hidden" name="num" value="<%=num %>">
 		<input type="hidden" name="nowPage" value="<%=nowPage %>">
-	</form>
+	</form>  
 </body>
 </html>

@@ -225,34 +225,27 @@ public class BoardDao {
 		}
 	}
 	
-	// 게시물 총 레코드수
-	public int getTotalCount2() {
-		int totalCount = 0;
-		
-		try {
-			con = pool.getConnection();
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			pool.freeConnection(con);
-		}
-		return totalCount;
-	}
-	
 	// 게시물 삭제
-	public void deleteBoard(Board board) {
+	public boolean deleteBoard(int num) {
+		boolean flag = false;
 		
 		try {
 			con = pool.getConnection();
-			sql = "delete from board where num=?";
-			pstmt = con.prepareStatement(sql);
-			pstmt.setInt(1, board.getNum());
-			pstmt.executeUpdate();	
+			sql = "select count(*) from board where ref=" + num;
+			rs = con.createStatement().executeQuery(sql);
+			if(rs.next()) {
+				if(rs.getInt(1) <= 1) {
+					sql = "delete from board where num=" + num;
+					if(con.createStatement().executeUpdate(sql) == 1)
+						flag = true;
+				}
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			pool.freeConnection(con);
 		}
+		return flag;
 	}
 }
 

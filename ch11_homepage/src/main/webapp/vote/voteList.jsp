@@ -23,6 +23,7 @@
 <body>
 	<div>
 		<h2 class="m50">투표 프로그램</h2>
+		<input type="button" value="홈으로" onclick="location.href='../index.jsp'" style="margin-left:720px;">
 		<hr>
 			
 		<jsp:include page="voteForm.jsp" />

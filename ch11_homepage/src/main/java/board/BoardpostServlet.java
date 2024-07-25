@@ -9,7 +9,7 @@ import java.io.IOException;
 
 public class BoardpostServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
+	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Board board = new Board();
 		board.setName(request.getParameter("name"));
@@ -18,9 +18,7 @@ public class BoardpostServlet extends HttpServlet {
 		board.setPass(request.getParameter("pass"));
 		board.setIp(request.getParameter("ip"));
 		
-		
-		boolean result =  new BoardDao().insertBoard(board);
+		boolean result = new BoardDao().insertBoard(board);
 		response.sendRedirect("list.jsp");
 	}
-
 }

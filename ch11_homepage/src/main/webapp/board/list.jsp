@@ -163,7 +163,7 @@
 				</td>
 				<td colspan="2" style="text-align:right;">
 					<a href="post.jsp" class="a">[글쓰기]</a>&emsp;
-					<a href="javascript:list();" class="a">[처음으로]</a>
+					<a href="../index.jsp" class="a">[처음으로]</a>
 				</td>
 			</tr>
 		</table>
