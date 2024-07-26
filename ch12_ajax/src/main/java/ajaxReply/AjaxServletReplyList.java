@@ -15,10 +15,9 @@ public class AjaxServletReplyList extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int ref = Integer.parseInt(request.getParameter("bnum"));
-		
 		ArrayList<Reply> alist = new ReplyDao().getReplyList(ref);
-		
-		response.setContentType("application/json; chrset=utf-8");
+
+		response.setContentType("application/json; charset=utf-8");
 		new Gson().toJson(alist, response.getWriter());
 	}
 
