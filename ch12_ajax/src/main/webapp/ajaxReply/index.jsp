@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-<title>댓글 보기</title>
+<title>청약당첨내역확인 댓글 보기</title>
 <style>
 	body {text-align:center;}
 	img { width: 600px;}
@@ -20,13 +20,13 @@
 				<td>
 					<textarea rows="3" cols="50"></textarea>
 				</td>
-				<td><button id="btn1">댓글등록</button></td>
+				<td><button id="btn1">동탄청약 등록 제네시스 뽑기/ 댓글등록</button></td>
 			</tr>
 		</thead>
 		<tbody>
 		
 		</tbody>
-	</table>
+	</table> 
 	
 	<script type="text/javascript">
 		$(() => {
@@ -49,7 +49,7 @@
 					$("table tbody").html(value);
 				},
 				error:function() {
-					console.log("ajax 통신 실패");
+					console.log("ajax 통신 동탄역 롯데캐슬 청약 실패");
 				}
 			})
 		}
