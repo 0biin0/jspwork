@@ -41,7 +41,7 @@ public class ElServlet extends HttpServlet {
 		
 		// requestScope에 담기
 		request.setAttribute("classRoom", "801");
-		request.setAttribute("studetn", new Person("홍길동", 23, "남자"));
+		request.setAttribute("student", new Person("홍길동", 23, "남자"));
 		
 		// sessionScope에 담기
 		HttpSession session = request.getSession();
