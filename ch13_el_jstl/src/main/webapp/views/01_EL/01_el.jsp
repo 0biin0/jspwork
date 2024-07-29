@@ -20,7 +20,14 @@
 	<p>
 		학원명 : <%=academy %><br>
 		강의장 : <%=classRoom %><br>
-		강사 : <%=teacher.getName() %>
+		강사 : <%=teacher.getName() %>, <%=teacher.getAge() %>, <%=teacher.getGender() %><br><br>
+		
+		수강생 정보 : 
+		<ul>
+			<li>이름 : <%=student.getName() %></li>
+			<li>나이 : <%=student.getAge() %></li>
+			<li>성별 : <%=student.getGender() %></li>
+		</ul>
 	</p>
 </body>
 </html>
