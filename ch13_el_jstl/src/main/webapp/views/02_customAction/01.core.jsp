@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ tablib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,5 +27,40 @@
 	
 	num1 변수값 : ${ num1 } <br>
 	num2 변수값 : ${ num2 } <br>
+	
+	<%-- <c:set var="result" value="num1+ num2"/>  그냥 문자열 출력됨 --%> 
+	<c:set var="result" value="${num1+num2 }" scope="session"/>
+	result 변수값 : ${ result } <br><br>
+	
+	pageScope.num1 : ${pageScope.num1 }<br>
+	requestScope.num2 : ${requestScope.num2 }<br>
+	sessionScope.result : ${sessionScope.result }<br>
+	requestScope.result : ${requestScope.result } <!-- =>값이 없으므로 아무것도 안나옴 --%>
+	
+	<!-- value속성 대신에 시작태그와 종료태그 사이에 초기값 지정 가능 -->
+	<c:set var="result" scope="request">
+	  777777
+	</c:set>
+	requestScope.result : ${requestScope.result }<br><br>
+	
+	<hr>
+	
+	<h3>2. 변수 삭제</h3>
+	<pre>
+	 *변수 삭제 : (c:remove var="제거하고자하는 변수명" [scope=""])
+     - 해당 scope영역에서 해당 변수를 찾아서 제거하는 태그
+     - scope 지정 생략시 모든 scope에서 해당 변수를 다 찾아서 제거함
+     	=> 해당 scope에 .removeAttribute를 통해 제거
+	</pre>
+	
+	삭제전 result : ${result }<br>
+	
+	 1) 특정 scope지정하여 삭제<br>
+	<c:remove var="result" scope="request"/>
+	삭제후 result : ${result }<br> 
+	
+	2) 모든 scope에서 삭제<br>
+	<c:remove var="result"/>
+	삭제후 result : ${result }<br>
 </body>
 </html>
