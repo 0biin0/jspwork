@@ -36,6 +36,6 @@
 	  <p>표준 액션 태그 : include와 forward</p>
 	  
 	  <h3>- 커스텀 액션태그</h3>
-	  <a href="views/02_cumstomAction/jstl.jsp">JSTL</a>
+	  <a href="views/02_customAction/jstl.jsp">JSTL</a>
 </body>
 </html> 
