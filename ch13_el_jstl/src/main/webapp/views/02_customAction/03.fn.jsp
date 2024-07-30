@@ -26,7 +26,7 @@
 	str : ${str }<br><br>
 	
 	<c:if test="${fn:contains(str, 'aaa') }"> <!-- false라서 출력 안댐 -->
-		str에 are가 들어있음
+		str에 are가 안들어있음
 	</c:if>
 	
 	
