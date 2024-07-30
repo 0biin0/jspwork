@@ -45,7 +45,7 @@
 	
 	<hr>
 	
-	<h3>2. 변수 삭제</h3>
+	<h3>1.2. 변수 삭제</h3>
 	<pre>
 	 *변수 삭제 : (c:remove var="제거하고자하는 변수명" [scope=""])
      - 해당 scope영역에서 해당 변수를 찾아서 제거하는 태그
@@ -62,5 +62,48 @@
 	2) 모든 scope에서 삭제<br>
 	<c:remove var="result"/>
 	삭제후 result : ${result }<br>
+	
+	<hr>
+	
+	<h3>1.3. 변수 출력</h3>
+	
+	<pre>
+	 데이터를 출력하고자 할 때 사용하는 태그
+	 *변수(데이터) 출력 : (c:out value="출력하고자하는 값" [default="기본값"] [escapeXml="true|false"])
+	</pre>
+	
+	<c:out value="${num1 }"/><br>
+	<c:out value="${abcd }" default="없음"></c:out> <!-- 없으면 없음 출력!! => default 설정해줬으니까~ --><br>
+	
+	<c:set var="outTest" value="<b>출력테스트</b>" />
+	
+	<c:out value="${outTest }" /> <br> <!-- escapeXml 생략시 기본값 = true 태그로 해석하지 않음(문자열로 취급) -->
+	<c:out value="${outTest }" escapeXml="false" /><br> <!-- 태그 해석함 -->
+	
+	<hr>
+	
+	<h3>2. 조건문 - if</h3>
+	<pre>
+	* (c:if test="조건식")
+	- java의 if문과 비슷한 역할을 하는 구문
+	- 조건식은 test속성에 작성(단, EL구문으로 기술해야 됨)
+	</pre>
+	<%-- 
+	 jsp 방식
+	<%
+		if(10 > 3){
+			%>
+			<b>10</b>
+		<% }
+	%> --%>
+	<c:if test="${num1 > num2 }">
+	 	<b>num1이 num2보다 크다</b>
+	</c:if>
+	
+	
+	
+	
+	
+	<br><br><br><br><br><br><br><br>
 </body>
 </html>
