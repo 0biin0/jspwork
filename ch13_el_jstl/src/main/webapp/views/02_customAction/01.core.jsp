@@ -314,6 +314,14 @@
 		<c:param name="num" value="3" />
 	</c:url>
 	<a href="${u }">c:url을 이용한 방식</a>
+	
+	
+	
+	
+	
+	
+	
+	
 	<br><br><br><br><br><br><br><br>
 </body>
 </html>
